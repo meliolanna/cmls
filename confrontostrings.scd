@@ -60,3 +60,10 @@ SynthDef(\pluck, {arg freq=220, trig=1, time=2, coef=0.3, cutoff=15, pan=0;
     Out.ar(0, Pan2.ar(pluck, pan));
 }).add;
 ).play;
+
+//note chitarra a vuoto. da risolvere il mi basso e il la, azzen
+Pbind(\instrument, \pluck,
+    \freq, Pseq([82.41, 110, 146.83,196, 246.94, 329.63], inf),
+    \dur, Pseq([0.5, 0.5, 0.5, 0.5, 0.5], 1),
+    \cutoff, Pseq([15, 15, 15, 15, 15, 15], 1)
+).play
