@@ -13,7 +13,7 @@ SynthDef(\string, {arg out=0, freq=440, pan=0, sustain=0.5, amp=0.8, fil=12000;
 }).add;
 ).play;
 
-//Youssef cambiando filtro
+//Youssef cambiando filtro QUESTO MI SEMBRA IL MIGLIORE
 (
 SynthDef(\stringR, {arg out=0, freq=324, pan=0, sustain=0.5, amp=0.8, fil=1200;
 	var pluck, period, string;
