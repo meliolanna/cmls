@@ -13,6 +13,27 @@ SynthDef(\string, {arg out=0, freq=440, pan=0, sustain=0.5, amp=0.8, fil=12000;
 }).add;
 ).play;
 
+//Youssef cambiando filtro
+(
+SynthDef(\stringR, {arg out=0, freq=324, pan=0, sustain=0.5, amp=0.8, fil=1200;
+	var pluck, period, string;
+	pluck = PinkNoise.ar(Decay.kr(Impulse.kr(0), 0.05));
+	period = freq.reciprocal;
+	string = CombL.ar(pluck, period, period, sustain*6);
+	string = LeakDC.ar(RLPF.ar(Pan2.ar(string, pan), fil)) * amp;
+	DetectSilence.ar(string);
+	Out.ar(out, string)
+}).add;
+).play;
+(
+r = Routine( {
+	Synth(\stringR, [\freq, 83]);
+	Synth(\stringR, [\freq, 123.47]);
+	Synth(\stringR, [\freq, 146.83]);
+	Synth(\stringR, [\freq, 196]);
+	Synth(\stringR, [\freq, 246.94]);
+	Synth(\stringR, [\freq, 392]);
+});
 // Queste le prove con il DynKlank
 
 (
